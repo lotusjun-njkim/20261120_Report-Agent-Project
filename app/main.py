@@ -10,7 +10,11 @@ from app.db.session import get_session_factory
 
 from app.services.errors import DomainError
 
+from app.api import reports
+
 app=FastAPI(title='Report Agent | 2026-11-20',version='1.0.0')
+
+app.include_router(reports.router)
 
 @app.exception_handler(DomainError)
 def on_domain_error(request:Request,exc:DomainError):
